@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Flask Multi-Environment App</title>
+    <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i data-feather="server"></i>
+                Flask Multi-Env App
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/health">Health</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/config">Config</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div class="text-center mb-5">
+                    <h1 class="display-4 mb-3">
+                        <i data-feather="info"></i>
+                        About This Application
+                    </h1>
+                    <p class="lead">Learn more about the Flask multi-environment configuration system</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i data-feather="target"></i>
+                            Purpose
+                        </h5>
+                        <p class="card-text">
+                            This Flask application demonstrates a robust multi-environment configuration system that allows seamless switching between development and production environments using environment variables.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i data-feather="layers"></i>
+                            Architecture
+                        </h5>
+                        <p class="card-text">The application uses a modular configuration system:</p>
+                        <ul class="list-unstyled">
+                            <li><i data-feather="folder" class="me-2"></i><strong>config/</strong> - Configuration package</li>
+                            <li class="ms-4"><i data-feather="file" class="me-2"></i><strong>__init__.py</strong> - Environment detection and config loading</li>
+                            <li class="ms-4"><i data-feather="file" class="me-2"></i><strong>development.py</strong> - Development environment settings</li>
+                            <li class="ms-4"><i data-feather="file" class="me-2"></i><strong>production.py</strong> - Production environment settings</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i data-feather="settings"></i>
+                            Environment Configuration
+                        </h5>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6 class="text-success">Development Environment</h6>
+                                <ul class="list-unstyled">
+                                    <li><i data-feather="check" class="me-2 text-success"></i>Debug Mode: Enabled</li>
+                                    <li><i data-feather="check" class="me-2 text-success"></i>Port: 5000</li>
+                                    <li><i data-feather="check" class="me-2 text-success"></i>Hot Reload: Yes</li>
+                                    <li><i data-feather="check" class="me-2 text-success"></i>Error Details: Verbose</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h6 class="text-warning">Production Environment</h6>
+                                <ul class="list-unstyled">
+                                    <li><i data-feather="shield" class="me-2 text-warning"></i>Debug Mode: Disabled</li>
+                                    <li><i data-feather="shield" class="me-2 text-warning"></i>Port: 5005</li>
+                                    <li><i data-feather="shield" class="me-2 text-warning"></i>Hot Reload: No</li>
+                                    <li><i data-feather="shield" class="me-2 text-warning"></i>Error Details: Minimal</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i data-feather="zap"></i>
+                            Current Status
+                        </h5>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="text-center p-3 bg-dark rounded">
+                                    <h6 class="mb-1">Environment</h6>
+                                    <span class="badge {% if environment == 'development' %}bg-success{% else %}bg-warning{% endif %} fs-6">
+                                        {{ environment.upper() }}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="text-center p-3 bg-dark rounded">
+                                    <h6 class="mb-1">Debug Mode</h6>
+                                    <span class="badge {% if debug_mode %}bg-info{% else %}bg-secondary{% endif %} fs-6">
+                                        {% if debug_mode %}ON{% else %}OFF{% endif %}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="text-center p-3 bg-dark rounded">
+                                    <h6 class="mb-1">Port</h6>
+                                    <span class="badge bg-primary fs-6">{{ port }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-4">
+                    <a href="/" class="btn btn-primary">
+                        <i data-feather="home" class="me-2"></i>
+                        Back to Home
+                    </a>
+                    <a href="/config" class="btn btn-outline-secondary ms-2">
+                        <i data-feather="code" class="me-2"></i>
+                        View Config JSON
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-light mt-5 py-4">
+        <div class="container text-center">
+            <p>&copy; 2025 Flask Multi-Environment Application. Built with Flask and Bootstrap.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script>
+        // Initialize Feather icons
+        feather.replace();
+    </script>
+</body>
+</html>
